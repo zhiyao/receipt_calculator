@@ -17,6 +17,18 @@ class Receipt
     @line_items = []
   end
 
+  def total_taxes
+    @line_items.inject(0) do |a, e|
+      a += e.product.tax * e.quantity
+    end
+  end
+
+  def total_after_tax
+    @line_items.inject(0) do |a, e|
+      a += e.product.price_with_tax * e.quantity
+    end
+  end
+
   def parse(line)
     if line.kind_of?(Array)
       line.map(&:strip)
