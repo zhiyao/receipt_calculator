@@ -38,5 +38,4 @@ class Tax
       @imported = false
     end
   end
-
 end
