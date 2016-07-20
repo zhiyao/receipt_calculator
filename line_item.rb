@@ -1,10 +1,11 @@
 require_relative './product'
 
 class LineItem
-  attr_accessor :quantity, :product
+  attr_reader :quantity, :product, :tax
 
-  def initialize(options)
-    @quantity = options[:quantity].to_i
-    @product = Product.new(name: options[:product], price: options[:price])
+  def initialize(name, price, quantity)
+    @quantity = quantity
+    @product = Product.new(name, price)
+    @tax = Tax.new(name, price, quantity)
   end
 end
